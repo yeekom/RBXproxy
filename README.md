@@ -1,2 +1,2 @@
-# ProxyRBLX
+# RBXproxy
 .
