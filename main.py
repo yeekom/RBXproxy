@@ -18,19 +18,19 @@ def launch_roblox():
         roblox = find_roblox()
     return(roblox)
 
-scripts_folder = os.path.abspath(os.path.dirname(__file__) + "/Scripts")
-scripts = [name for name in os.listdir(scripts_folder) if os.path.isdir(scripts_folder + f"/{name}")]
+addons_folder = os.path.abspath(os.path.dirname(__file__) + "/Addons")
+addons = [name for name in os.listdir(addons_folder) if os.path.isdir(addons_folder + f"/{name}")]
 print("0: None")
-for i, file in enumerate(scripts, 1):
+for i, file in enumerate(addons, 1):
 
     print(f"{i}: {file}")
 
 while True:
-    choice = int(input("Select a script: "))
+    choice = int(input("Select a addon: "))
     chosen_script_args = []
 
-    if 1 <= choice <= len(scripts):
-        chosen_script_args = ["-s", os.path.abspath(os.path.dirname(__file__) + "/Scripts" + f"/{scripts[choice-1]}" + "/addon.py")]
+    if 1 <= choice <= len(addons):
+        chosen_script_args = ["-s", os.path.abspath(os.path.dirname(__file__) + "/Addons" + f"/{addons[choice-1]}" + "/addon.py")]
         break
     elif choice == 0:
         break
