@@ -6,14 +6,14 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 
 
-MAIN_DIR = Path(__file__).parent
-CERT_DIR = MAIN_DIR / "Certificates"
-CERT_DIR.mkdir(exist_ok=True)
-CA_PEM_PATH = CERT_DIR / "mitmproxy-ca.pem"
-CA_CERT_PATH = CERT_DIR / "ca-cert.pem"
+main_folder = Path(__file__).parent
+cerificate_folder = main_folder / "Certificates"
+mitm_ca = cerificate_folder / "mitmproxy-ca.pem"
+roblox_ca = cerificate_folder / "ca-cert.pem"
 
 
 def generate_ca_files():
+    
     private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
     subject = issuer = x509.Name([x509.NameAttribute(NameOID.COMMON_NAME, "ProxyRBX"),])
 
@@ -27,17 +27,28 @@ def generate_ca_files():
         .not_valid_after(datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=1095))
         .add_extension(x509.BasicConstraints(ca=True, path_length=None), critical=True)
         .add_extension(
-            x509.KeyUsage(key_cert_sign=True,), critical=True
+            x509.KeyUsage(
+                digital_signature=False,
+                content_commitment=False,
+                key_encipherment=False,
+                data_encipherment=False,
+                key_agreement=False,
+                key_cert_sign=True,
+                crl_sign=False,
+                encipher_only=False,
+                decipher_only=False
+            ), critical=True
         )
     )
 
     certificate = cert_builder.sign(private_key, hashes.SHA256())
+    cerificate_folder.mkdir(exist_ok=True)
 
-    with open(CA_PEM_PATH, 'wb') as f:
+    with open(mitm_ca, 'wb') as f:
         f.write(private_key.private_bytes(encoding=serialization.Encoding.PEM, format=serialization.PrivateFormat.PKCS8, encryption_algorithm=serialization.NoEncryption()))
         f.write(certificate.public_bytes(serialization.Encoding.PEM))
     
-    with open(CA_CERT_PATH, "w") as f:
+    with open(roblox_ca, "w") as f:
         f.write("MITMPROXY TRUSTED ROOT\n=========================\n")
         f.write(certificate.public_bytes(serialization.Encoding.PEM).decode('utf-8'))
 
@@ -77,14 +88,13 @@ def update_cacert(cacert_path):
     if "MITMPROXY TRUSTED ROOT" in original_ca:
         original_ca = original_ca.split("MITMPROXY TRUSTED ROOT")[0]
     
-    with open(CA_CERT_PATH, "r") as f:
+    with open(roblox_ca, "r") as f:
         mitm_ca = f.read()
     
     with open(cacert_path, "w") as f:
         f.write(original_ca.strip() + "\n" + mitm_ca)
     
-
-if not CA_PEM_PATH.exists():
+if not mitm_ca.exists():
     generate_ca_files()
 
 add_cert_to_roblox()
