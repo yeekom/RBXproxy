@@ -18,9 +18,11 @@ def launch_roblox():
         roblox = find_roblox()
     return(roblox)
 
-scripts = os.listdir(os.path.abspath(os.path.dirname(__file__) + "/Scripts"))
+scripts_folder = os.path.abspath(os.path.dirname(__file__) + "/Scripts")
+scripts = [name for name in os.listdir(scripts_folder) if os.path.isdir(scripts_folder + f"/{name}")]
 print("0: None")
 for i, file in enumerate(scripts, 1):
+
     print(f"{i}: {file}")
 
 while True:
@@ -28,7 +30,7 @@ while True:
     chosen_script_args = []
 
     if 1 <= choice <= len(scripts):
-        chosen_script_args = ["-s", os.path.abspath(os.path.dirname(__file__) + "/Scripts" + f"/{scripts[choice-1]}")]
+        chosen_script_args = ["-s", os.path.abspath(os.path.dirname(__file__) + "/Scripts" + f"/{scripts[choice-1]}" + "/addon.py")]
         break
     elif choice == 0:
         break
@@ -46,5 +48,3 @@ os.kill(launch_roblox(), signal.SIGILL)
 
 subprocess.run(["python", os.path.abspath(os.path.dirname(__file__) + "/certificate-loader.py")], check=True)
 subprocess.Popen(["cmd", "/c", "start", "mitmproxy", *chosen_script_args,"--mode", "local:RobloxPlayerBeta.exe", "--set", "confdir=Certificates\\"])   
-
-launch_roblox()
