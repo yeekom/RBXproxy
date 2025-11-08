@@ -95,8 +95,6 @@ Scripts/
 ## Support
 Need help? Contact yeekom on Discord for additional support and questions.
 
-[Add your license here]
-
 ---
 
 **Disclaimer**: This tool is for educational and debugging purposes. Users are responsible for ensuring their use complies with Roblox's Terms of Service.
