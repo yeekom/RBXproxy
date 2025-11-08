@@ -92,7 +92,8 @@ Scripts/
 **High ping/lag?**
 - This is expected behavior due to the proxy layer. The ~100ms latency is normal.
 
-## License
+## Support
+Need help? Contact yeekom on Discord for additional support and questions.
 
 [Add your license here]
 
