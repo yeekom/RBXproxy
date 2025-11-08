@@ -4,7 +4,7 @@ A tool that connects mitmproxy to Roblox's process, enabling network traffic ana
 
 ## Features
 
-- 🔒 Automatic certificate generation
+- 🔒 Automatic certificate generation and management
 - 🔌 Seamless integration with Roblox
 - 🧩 Support for custom mitmproxy addons
 - 🛠️ Network traffic analysis and debugging
@@ -25,13 +25,11 @@ A tool that connects mitmproxy to Roblox's process, enabling network traffic ana
 
 ## Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/RBXproxy.git
-cd RBXproxy
-```
+1. Download the latest release from the [Releases](https://github.com/yeekom/RBXproxy/releases) tab
 
-2. Install dependencies:
+2. Extract the downloaded archive to your desired location
+
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
