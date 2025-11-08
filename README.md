@@ -53,17 +53,17 @@ RBXproxy supports custom mitmproxy addons to extend functionality.
 
 ### Addon Structure
 
-Place your addons in the `Scripts` folder with the following structure:
+Place your addons in the `Addons` folder with the following structure:
 
 ```
-Scripts/
+Addons/
 └── YourAddonName/
     ├── addon.py          # Required: Main addon file (loaded by mitmproxy)
     └── other_files.py    # Optional: Any additional files
 ```
 
 **Requirements:**
-- Must be contained in a folder under `Scripts/`
+- Must be contained in a folder under `Addons/`
 - Must have an `addon.py` file (this is what mitmproxy loads)
 - Folder and additional files can have any name
 
