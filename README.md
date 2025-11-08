@@ -4,8 +4,8 @@ A tool that connects mitmproxy to Roblox's process, enabling network traffic ana
 
 ## Features
 
-- 🔒 Automatic certificate generation and management
-- 🔌 Seamless integration with Roblox's process
+- 🔒 Automatic certificate generation
+- 🔌 Seamless integration with Roblox
 - 🧩 Support for custom mitmproxy addons
 - 🛠️ Network traffic analysis and debugging
 - 📊 API call monitoring and inspection
@@ -45,7 +45,7 @@ python main.py
 
 ### How to Know It's Working
 
-When RBXproxy is running correctly, you'll see the mitmproxy window open. Certificates are automatically generated and loaded on first run—no manual configuration needed!
+When RBXproxy is running correctly, you'll see the mitmproxy window open. Certificates are automatically generated and loaded on first run meaning no manual configuration needed!
 
 ## Custom Addons
 
