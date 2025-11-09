@@ -1,6 +1,6 @@
 # RBXproxy
 
-A tool that connects mitmproxy to Roblox's process, enabling network traffic analysis and debugging through automatic certificate generation and custom addon support.
+A tool that routes Roblox's traffic through Mitmproxy, enabling network traffic analysis and debugging through automatic certificate generation and custom addon support.
 
 ## Features
 
