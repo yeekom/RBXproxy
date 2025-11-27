@@ -20,6 +20,7 @@ def launch_roblox():
 
 addons_folder = os.path.abspath(os.path.dirname(__file__) + "/Addons")
 addons = [name for name in os.listdir(addons_folder) if os.path.isdir(addons_folder + f"/{name}")]
+print("Select a script to run with Mitmproxy")
 print("0: None")
 for i, file in enumerate(addons, 1):
 
@@ -47,4 +48,4 @@ if initial_process:
 os.kill(launch_roblox(), signal.SIGILL)
 
 subprocess.run(["python", os.path.abspath(os.path.dirname(__file__) + "/certificate-loader.py")], check=True)
-subprocess.Popen(["cmd", "/c", "start", "mitmproxy", *chosen_script_args,"--mode", "local:RobloxPlayerBeta.exe", "--set", "confdir=Certificates\\"])   
+subprocess.Popen(["cmd", "/c", "start", "mitmproxy", *chosen_script_args,"--mode", "local:RobloxPlayerBeta.exe", "--set", f"confdir={os.path.abspath(os.path.dirname(__file__) + "/Certificates")}"])   
